@@ -1,44 +1,515 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>MaximilianoPP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MaximilianoPP | Comic Art Portfolio</title>
+
+    <style>
+        /* GENERAL PAGE STYLING */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background-color: #101010;
+            color: #e8e4df;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVIGATION BAR */
+
+        nav {
+            background-color: #080808;
+            border-bottom: 2px solid #c91d25;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #f5f1eb;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #e32636;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #b7b0a9;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff303a;
+        }
+
+        /* HERO SECTION */
+
+        ..hero{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    padding:100px 7% 85px;
+    border-bottom:1px solid #38302d;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:-25px;
+    z-index:-2;
+    background:url("thraggvsgoji.jpg") center/cover no-repeat;
+    filter:blur(3px);
+    transform:scale(1.08);
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    background:rgba(8,8,8,.78);
+}
+
+.hero > *{
+    position:relative;
+    z-index:1;
+}
+
+        .eyebrow {
+            color: #e32636;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(44px, 8vw, 100px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -3px;
+            text-transform: uppercase;
+            margin: 25px 0;
+        }
+
+        .hero h1 span {
+            color: #e32636;
+        }
+
+        .hero p.description {
+            color: #aaa39b;
+            font-size: 17px;
+            max-width: 540px;
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 13px 22px;
+            background-color: #c91d25;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 1px solid #c91d25;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background-color: transparent;
+            color: #ff303a;
+        }
+
+        /* PORTFOLIO SECTION */
+
+        .portfolio {
+            padding: 75px 7%;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #c91d25;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(30px, 5vw, 48px);
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-top: 8px;
+        }
+
+        .section-heading h2 span {
+            color: #e32636;
+        }
+
+        /* PROJECT GRID */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 45px 28px;
+        }
+
+        .project {
+            display: block;
+            min-width: 0;
+        }
+
+        .project-image {
+            background-color: #191919;
+            border: 1px solid #403633;
+            box-shadow: 4px 4px 0 #29201f;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 340px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.4s, opacity 0.4s;
+        }
+
+        .project:hover .project-image {
+            border-color: #e32636;
+        }
+
+        .project:hover .project-image img {
+            transform: scale(1.03);
+            opacity: 0.85;
+        }
+
+        .project-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            padding-top: 16px;
+        }
+
+        .project-info h3 {
+            font-size: 19px;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .project-info p {
+            color: #99918a;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .project-number {
+            color: #e32636;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* CONTACT BANNER */
+
+        .contact-section {
+            margin: 0 7% 75px;
+            padding: 45px;
+            background-color: #191919;
+            border-left: 5px solid #c91d25;
+        }
+
+        .contact-section h2 {
+            font-size: clamp(30px, 5vw, 48px);
+            text-transform: uppercase;
+            margin: 10px 0 20px;
+        }
+
+        .contact-section h2 span {
+            color: #e32636;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px 7%;
+            border-top: 1px solid #38302d;
+            background-color: #080808;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer p {
+            color: #88817a;
+            font-size: 12px;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 75px 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .portfolio {
+                padding: 55px 5%;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .project-image img {
+                height: auto;
+                max-height: 500px;
+            }
+
+            .contact-section {
+                margin: 0 5% 55px;
+                padding: 30px 22px;
+            }
+
+            footer {
+                padding: 25px 5%;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* KEYBOARD ACCESSIBILITY */
+
+        a:focus-visible {
+            outline: 2px solid #ff303a;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
-<body style="background-color: lightgrey;">
 
-<h3 style="color:Blue;">The Maximiliano</h1>
-<p> Selected portfolio type shi.</p>
-<p style="font-size: 30px;"> Selected pieces:</p>
+<body>
 
-<p><a href="index2pp.html">Comic book Interiors</a>
+    <!-- NAVIGATION BAR -->
 
-<p><img src="absoluterandy1.jpg" style="width:30%; "alt="Don't be afraid">
+    <nav>
+        <a href="index.html" class="logo">
+            MAXIMILIANO<span>.</span>
+        </a>
 
-<p><a href="index3pp.html">Comic book Inked (pinups)</a>
+        <ul class="nav-links">
+            <li><a href="#work">Artwork</a></li>
+            <li><a href="index2pp.html">Interiors</a></li>
+            <li><a href="index3pp.html">Inks</a></li>
+            <li><a href="index4pp.html">Pinups</a></li>
+            <li><a href="index5pp.html">Class Projects</a></li>
+            <li><a href="index9pp.html">Stop Motion</a></li>
+            <li><a href="index6pp.html">About</a></li>
+            <li><a href="index8pp.html">Contact</a></li>
+        </ul>
+    </nav>
 
-<p><img src="supesinks.jpg" style="width:30%; "alt="Don't be afraid">
+    <!-- INTRODUCTION -->
 
-<p><a href="index4pp.html">Comic book pinups(colored)</a>
+    <header class="hero">
+        <p class="eyebrow">Comic Art / Illustration / Motion</p>
 
-<p><img src="benreilly.jpg" style="width:30%; "alt="Don't be afraid">
+        <h1>
+            THE<br>
+            MAXIMILIANO<span>.</span>
+        </h1>
 
-<p><a href="index5pp.html">Art 74 Class projects</a>
+        <p class="description">
+            Selected portfolio type shi. A collection of comic book
+            interiors, inked illustrations, colored pinups, class projects,
+            and stop-motion experiments.
+        </p>
 
-<p><img src="shitmypants64g.jpg" style="width:50%; "alt="Don't be afraid">
+        <a href="#work" class="hero-button">
+            EXPLORE THE WORK ↓
+        </a>
+    </header>
 
-<p><a href="index9pp.html">Stop Motions</a>
+    <!-- SELECTED ARTWORK -->
 
-<p><img src="ddvsnw.JPEG" style="width:50%; "alt="Don't be afraid">
+    <main>
+        <section class="portfolio" id="work">
 
-<hr style="width: 100%; border: none; height: 3px; background-color: black;">
+            <div class="section-heading">
+                <p class="eyebrow">Selected Work / 01—05</p>
+                <h2>Selected Pieces<span>.</span></h2>
+            </div>
 
-<ul>
+            <div class="project-grid">
 
-<li><a href="index6pp.html">About</a></li>
+                <a href="index2pp.html" class="project">
+                    <div class="project-image">
+                        <img src="absoluterandy1.jpg"
+                             alt="Comic book interior artwork">
+                    </div>
 
-<li><a href="index8pp.html">Contact me</a></li>
+                    <div class="project-info">
+                        <div>
+                            <h3>Comic Book Interiors</h3>
+                            <p>Sequential art and storytelling</p>
+                        </div>
+                        <span class="project-number">01</span>
+                    </div>
+                </a>
 
-</ul>
+                <a href="index3pp.html" class="project">
+                    <div class="project-image">
+                        <img src="supesinks.jpg"
+                             alt="Inked comic book pinup artwork">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Inked Pinups</h3>
+                            <p>Linework and inking</p>
+                        </div>
+                        <span class="project-number">02</span>
+                    </div>
+                </a>
+
+                <a href="index4pp.html" class="project">
+                    <div class="project-image">
+                        <img src="benreilly.jpg"
+                             alt="Colored comic book pinup artwork">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Colored Pinups</h3>
+                            <p>Color and character illustration</p>
+                        </div>
+                        <span class="project-number">03</span>
+                    </div>
+                </a>
+
+                <a href="index5pp.html" class="project">
+                    <div class="project-image">
+                        <img src="shitmypants64g.jpg"
+                             alt="Artwork from Art 74 class projects">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Art 74 Projects</h3>
+                            <p>Classwork and creative experiments</p>
+                        </div>
+                        <span class="project-number">04</span>
+                    </div>
+                </a>
+
+                <a href="index9pp.html" class="project">
+                    <div class="project-image">
+                        <img src="ddvsnw.JPEG"
+                             alt="Stop-motion animation project">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Stop Motion</h3>
+                            <p>Movement and visual storytelling</p>
+                        </div>
+                        <span class="project-number">05</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+
+        <section class="contact-section">
+            <p class="eyebrow">Have a project in mind?</p>
+
+            <h2>Let's make something <span>great.</span></h2>
+
+            <a href="index8pp.html" class="hero-button">
+                CONTACT ME ↗
+            </a>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <a href="index.html" class="logo">
+            MAXIMILIANO<span>.</span>
+        </a>
+
+        <p>Independent art. Original vision.</p>
+
+        <p>© 2026 Maximiliano</p>
+    </footer>
 
 </body>
-
 </html>

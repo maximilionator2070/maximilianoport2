@@ -1,33 +1,538 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Comic Book Interiors | Maximiliano</title>
+
+    <style>
+        /* GENERAL STYLING */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background-color: #101010;
+            color: #e8e4df;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVIGATION BAR */
+
+        nav {
+            background-color: #080808;
+            border-bottom: 2px solid #c91d25;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #f5f1eb;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #e32636;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #b7b0a9;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff303a;
+        }
+
+        /* PAGE INTRODUCTION */
+
+        .hero {
+            padding: 75px 7% 65px;
+            border-bottom: 1px solid #38302d;
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,0.07) 1px,
+                    transparent 1.5px
+                ) 0 0 / 7px 7px,
+                radial-gradient(
+                    ellipse at 85% 25%,
+                    rgba(201,29,37,0.16),
+                    transparent 55%
+                ),
+                #101010;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #aaa39b;
+            font-size: 13px;
+            margin-bottom: 35px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #ff303a;
+        }
+
+        .eyebrow {
+            color: #e32636;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 82px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -3px;
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: #e32636;
+        }
+
+        .hero-description {
+            color: #aaa39b;
+            font-size: 16px;
+            max-width: 580px;
+            margin-bottom: 15px;
+        }
+
+        /* COMIC GALLERY */
+
+        .gallery {
+            padding: 65px 7% 85px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #c91d25;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-top: 8px;
+        }
+
+        .section-heading h2 span {
+            color: #e32636;
+        }
+
+        .page-count {
+            color: #88817a;
+            font-size: 12px;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        /* IMAGE PANELS */
+
+        .comic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 35px 25px;
+        }
+
+        .comic-panel {
+            min-width: 0;
+        }
+
+        .comic-image {
+            background-color: #080808;
+            border: 1px solid #403633;
+            box-shadow: 4px 4px 0 #29201f;
+            overflow: hidden;
+        }
+
+        .comic-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.4s, opacity 0.4s;
+        }
+
+        .comic-panel:hover .comic-image {
+            border-color: #e32636;
+        }
+
+        .comic-panel:hover .comic-image img {
+            transform: scale(1.015);
+            opacity: 0.92;
+        }
+
+        .comic-caption {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding-top: 15px;
+        }
+
+        .comic-caption h3 {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comic-caption span {
+            color: #e32636;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* BOTTOM NAVIGATION */
+
+        .bottom-navigation {
+            margin: 0 7% 70px;
+            padding: 30px;
+            background-color: #191919;
+            border-left: 4px solid #c91d25;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .bottom-navigation p {
+            color: #aaa39b;
+            font-size: 13px;
+        }
+
+        .bottom-navigation h2 {
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+
+        .bottom-navigation h2 span {
+            color: #e32636;
+        }
+
+        .bottom-navigation a {
+            display: inline-block;
+            border: 1px solid #c91d25;
+            padding: 11px 17px;
+            color: #f5f1eb;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .bottom-navigation a:hover {
+            background-color: #c91d25;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px 7%;
+            border-top: 1px solid #38302d;
+            background-color: #080808;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer p {
+            color: #88817a;
+            font-size: 12px;
+        }
+
+        footer ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        footer ul a {
+            color: #aaa39b;
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+
+        footer ul a:hover {
+            color: #ff303a;
+        }
+
+        /* MOBILE LAYOUT */
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 16px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .hero {
+                padding: 55px 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .gallery {
+                padding: 45px 5% 60px;
+            }
+
+            .comic-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .bottom-navigation {
+                margin: 0 5% 50px;
+                padding: 25px;
+            }
+
+            footer {
+                padding: 25px 5%;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* ACCESSIBILITY */
+
+        a:focus-visible {
+            outline: 2px solid #ff303a;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
-<body style="background-color: lightgrey;">
 
-<h3 style="color:Blue;">The Maximiliano</h1>
-<a href="index.html">Back home</a>
-<p> Selected interior portfolio type shi.</p>
-<p style="font-size: 30px;"> Interiors:</p>
+<body>
 
-<p><img src="absoluterandy1.jpg" style="width:49%; "alt="Don't be afraid">
+    <!-- NAVIGATION BAR -->
 
-<img src="absoluterandy2.jpg" style="width:49%; "alt="Don't be afraid">
+    <nav>
+        <a href="index.html" class="logo">
+            MAXIMILIANO<span>.</span>
+        </a>
 
-<p><img src="spideyinterior1.jpg" style="width:49%; "alt="Don't be afraid">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index2pp.html" class="active">Interiors</a></li>
+            <li><a href="index3pp.html">Inks</a></li>
+            <li><a href="index4pp.html">Pinups</a></li>
+            <li><a href="index5pp.html">Class Projects</a></li>
+            <li><a href="index9pp.html">Stop Motion</a></li>
+            <li><a href="index6pp.html">About</a></li>
+            <li><a href="index8pp.html">Contact</a></li>
+        </ul>
+    </nav>
 
-<img src="spideyinterior2.jpg" style="width:49%; "alt="Don't be afraid"
+    <!-- PAGE HEADER -->
 
-<hr style="width: 100%; border: none; height: 3px; background-color: black;">
+    <header class="hero">
 
-<ul>
+        <a href="index.html" class="back-link">
+            ← Back to homepage
+        </a>
 
-<li><a href="index6pp.html">About</a></li>
+        <p class="eyebrow">Portfolio / Sequential Art</p>
 
-<li><a href="index8pp.html">Contact me</a></li>
+        <h1>
+            Comic Book<br>
+            <span>Interiors.</span>
+        </h1>
 
-</ul>
+        <p class="hero-description">
+            A selection of comic book interior pages showcasing
+            sequential storytelling, composition, character acting,
+            and the craft of bringing a story to life panel by panel.
+        </p>
+
+    </header>
+
+    <!-- COMIC ARTWORK -->
+
+    <main>
+
+        <section class="gallery">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Selected Pages</p>
+                    <h2>Interior <span>Gallery.</span></h2>
+                </div>
+
+                <p class="page-count">04 ARTWORKS</p>
+            </div>
+
+            <div class="comic-grid">
+
+                <!-- COMIC PAGE 01 -->
+
+                <article class="comic-panel">
+                    <div class="comic-image">
+                        <img
+                            src="absoluterandy1.jpg"
+                            alt="First page of comic book interior artwork"
+                            loading="eager">
+                    </div>
+
+                    <div class="comic-caption">
+                        <h3>Comic Interior</h3>
+                        <span>PAGE 01</span>
+                    </div>
+                </article>
+
+                <!-- COMIC PAGE 02 -->
+
+                <article class="comic-panel">
+                    <div class="comic-image">
+                        <img
+                            src="absoluterandy2.jpg"
+                            alt="Second page of comic book interior artwork"
+                            loading="lazy">
+                    </div>
+
+                    <div class="comic-caption">
+                        <h3>Comic Interior</h3>
+                        <span>PAGE 02</span>
+                    </div>
+                </article>
+
+                <!-- COMIC PAGE 03 -->
+
+                <article class="comic-panel">
+                    <div class="comic-image">
+                        <img
+                            src="spideyinterior1.jpg"
+                            alt="First Spider-Man comic interior page"
+                            loading="lazy">
+                    </div>
+
+                    <div class="comic-caption">
+                        <h3>Spider-Man Interior</h3>
+                        <span>PAGE 03</span>
+                    </div>
+                </article>
+
+                <!-- COMIC PAGE 04 -->
+
+                <article class="comic-panel">
+                    <div class="comic-image">
+                        <img
+                            src="spideyinterior2.jpg"
+                            alt="Second Spider-Man comic interior page"
+                            loading="lazy">
+                    </div>
+
+                    <div class="comic-caption">
+                        <h3>Spider-Man Interior</h3>
+                        <span>PAGE 04</span>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- BOTTOM CALL TO ACTION -->
+
+        <section class="bottom-navigation">
+            <div>
+                <p>Explore more of the portfolio</p>
+                <h2>More art. <span>More stories.</span></h2>
+            </div>
+
+            <a href="index3pp.html">Next: Inked Pinups →</a>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <a href="index.html" class="logo">
+            MAXIMILIANO<span>.</span>
+        </a>
+
+        <ul>
+            <li><a href="index6pp.html">About</a></li>
+            <li><a href="index8pp.html">Contact</a></li>
+        </ul>
+
+        <p>© 2026 Maximiliano</p>
+
+    </footer>
 
 </body>
-
 </html>

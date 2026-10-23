@@ -1,33 +1,470 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MaximilianoPP | Colored Pinups</title>
+
+    <style>
+        /* GENERAL PAGE STYLING */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background-color: #101010;
+            color: #e8e4df;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVIGATION BAR */
+
+        nav {
+            background-color: #080808;
+            border-bottom: 2px solid #c91d25;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #f5f1eb;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #e32636;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #b7b0a9;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] {
+            color: #ff303a;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            padding: 90px 7% 70px;
+            border-bottom: 1px solid #38302d;
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.07) 1px,
+                    transparent 1.5px
+                ) 0 0 / 7px 7px,
+                radial-gradient(
+                    ellipse at 80% 30%,
+                    rgba(201, 29, 37, 0.18),
+                    transparent 55%
+                ),
+                #101010;
+        }
+
+        .eyebrow {
+            color: #e32636;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 82px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -3px;
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+        .hero h1 span,
+        .section-heading h2 span {
+            color: #e32636;
+        }
+
+        .hero p.description {
+            color: #aaa39b;
+            font-size: 17px;
+            max-width: 600px;
+            margin-bottom: 25px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 13px 22px;
+            background-color: #c91d25;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 1px solid #c91d25;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background-color: transparent;
+            color: #ff303a;
+        }
+
+        /* PINUP GALLERY */
+
+        .portfolio {
+            padding: 70px 7% 80px;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #c91d25;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(30px, 5vw, 48px);
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-top: 8px;
+        }
+
+        .section-description {
+            color: #aaa39b;
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        /* ARTWORK GRID */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 40px 28px;
+        }
+
+        .project {
+            display: block;
+            min-width: 0;
+        }
+
+        .project-image {
+            background-color: #191919;
+            border: 1px solid #403633;
+            box-shadow: 4px 4px 0 #29201f;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 420px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.4s, opacity 0.4s;
+        }
+
+        .project:hover .project-image {
+            border-color: #e32636;
+        }
+
+        .project:hover .project-image img {
+            transform: scale(1.03);
+            opacity: 0.88;
+        }
+
+        .project-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            padding-top: 14px;
+        }
+
+        .project-info h3 {
+            font-size: 18px;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .project-info p {
+            color: #99918a;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .project-number {
+            color: #e32636;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px 7%;
+            border-top: 1px solid #38302d;
+            background-color: #080808;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer p {
+            color: #88817a;
+            font-size: 12px;
+        }
+
+        /* KEYBOARD ACCESSIBILITY */
+
+        a:focus-visible {
+            outline: 2px solid #ff303a;
+            outline-offset: 4px;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+
+        @media (max-width: 900px) {
+            nav {
+                flex-direction: column;
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 12px 18px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 65px 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .portfolio {
+                padding: 50px 5% 60px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .project-image img {
+                height: auto;
+                max-height: 500px;
+                min-height: 250px;
+            }
+
+            footer {
+                padding: 25px 5%;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
-<body style="background-color: lightgrey;">
 
-<h3 style="color:Blue;">The Maximiliano</h1>
-<a href="index.html">Back home</a>
-<p> Selected Pinup portfolio type shi.</p>
-<p style="font-size: 30px;"> Comic pinups(colored):</p>
+<body>
 
-<p><img src="spidey2.jpg" style="width:49%; "alt="Don't be afraid">
+    <!-- NAVIGATION BAR -->
 
-<img src="benreilly.jpg" style="width:49%; "alt="Don't be afraid">
+    <nav>
+        <a href="index.html" class="logo">
+            MAXIMILIANO<span>.</span>
+        </a>
 
-<p><img src="hallowrez.jpg" style="width:49%; "alt="Don't be afraid">
+        <ul class="nav-links">
+            <li><a href="index.html">Artwork</a></li>
+            <li><a href="index2pp.html">Interiors</a></li>
+            <li><a href="index3pp.html">Inks</a></li>
+            <li><a href="index4pp.html" aria-current="page">Pinups</a></li>
+            <li><a href="index5pp.html">Class Projects</a></li>
+            <li><a href="index9pp.html">Stop Motion</a></li>
+            <li><a href="index6pp.html">About</a></li>
+            <li><a href="index8pp.html">Contact</a></li>
+        </ul>
+    </nav>
 
-<img src="spider-noir.jpg" style="width:49%; "alt="Don't be afraid"
+    <!-- INTRODUCTION -->
 
-<hr style="width: 100%; border: none; height: 3px; background-color: black;">
+    <header class="hero">
+        <p class="eyebrow">Comic Art / Color / Illustration</p>
 
-<ul>
+        <h1>
+            COLORED<br>
+            PINUPS<span>.</span>
+        </h1>
 
-<li><a href="index6pp.html">About</a></li>
+        <p class="description">
+            A collection of colored comic book pinups featuring
+            character illustrations, bold colors, and comic-inspired art.
+        </p>
 
-<li><a href="index8pp.html">Contact me</a></li>
+        <a href="#work" class="hero-button">
+            EXPLORE THE ART ↓
+        </a>
+    </header>
 
-</ul>
+    <!-- COLORED PINUP GALLERY -->
+
+    <main>
+        <section class="portfolio" id="work">
+
+            <div class="section-heading">
+                <p class="eyebrow">Selected Work / 01—04</p>
+                <h2>Comic Pinups<span>.</span></h2>
+
+                <p class="section-description">
+                    Colored illustrations and character artwork.
+                </p>
+            </div>
+
+            <div class="project-grid">
+
+                <article class="project">
+                    <div class="project-image">
+                        <img
+                            src="spidey2.jpg"
+                            alt="Spider-Man comic pinup illustration"
+                            loading="lazy">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Spider-Man</h3>
+                            <p>Comic character illustration</p>
+                        </div>
+                        <span class="project-number">01</span>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-image">
+                        <img
+                            src="benreilly.jpg"
+                            alt="Ben Reilly colored comic pinup"
+                            loading="lazy">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Ben Reilly</h3>
+                            <p>Colored character pinup</p>
+                        </div>
+                        <span class="project-number">02</span>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-image">
+                        <img
+                            src="hallowrez.jpg"
+                            alt="Halloween-themed comic pinup artwork"
+                            loading="lazy">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Halloween Pinup</h3>
+                            <p>Character art and color</p>
+                        </div>
+                        <span class="project-number">03</span>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <div class="project-image">
+                        <img
+                            src="spider-noir.jpg"
+                            alt="Spider-Man Noir comic illustration"
+                            loading="lazy">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Spider-Man Noir</h3>
+                            <p>Comic-inspired illustration</p>
+                        </div>
+                        <span class="project-number">04</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <a href="index.html" class="logo">
+            MAXIMILIANO<span>.</span>
+        </a>
+
+        <p>Independent art. Original vision.</p>
+
+        <p>© 2026 Maximiliano</p>
+    </footer>
 
 </body>
-
 </html>
